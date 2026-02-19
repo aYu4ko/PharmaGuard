@@ -45,7 +45,7 @@ export default function App() {
     formData.append("drugs", drugs);
 
     try {
-      const response = await fetch("http://localhost:8000/analyze", {
+      const response = await fetch("https://pharmaguard-api.onrender.com/analyze", {
         method: "POST",
         body: formData,
       });
