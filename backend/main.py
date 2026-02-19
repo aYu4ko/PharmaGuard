@@ -4,14 +4,12 @@ import uvicorn
 from vcf_parser import parse_vcf_content
 from llm_service import generate_clinical_assessment
 
-# Initialize the API
 app = FastAPI(title="RIFT 2026 Pharmacogenomics API")
 
-# --- CORS MIDDLEWARE ---
-# This is what allows your React app to talk to this Python app
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins (perfect for local testing)
+    #Changed urls
+    allow_origins=["https://pharmaguard.vercel.app"],  
     allow_credentials=True,
     allow_methods=["*"],  # Allows all methods (POST, GET, etc.)
     allow_headers=["*"],  # Allows all headers
@@ -26,7 +24,7 @@ async def analyze_pharmacogenomics(
     file: UploadFile = File(...), 
     drugs: str = Form(...)
 ):
-    # 1. Validation Requirements (File format & size up to 5MB limits are standard)
+    # 1. Validation Requirements 
     if not file.filename.endswith('.vcf'):
         raise HTTPException(status_code=400, detail="Invalid file format. Please upload a .vcf file.")
     
