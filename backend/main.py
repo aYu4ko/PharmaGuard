@@ -9,7 +9,7 @@ app = FastAPI(title="RIFT 2026 Pharmacogenomics API")
 app.add_middleware(
     CORSMiddleware,
     #Changed urls
-    allow_origins=["https://pharmaguard.vercel.app"],  
+    allow_origins=["*"],  # Allows all origins
     allow_credentials=True,
     allow_methods=["*"],  # Allows all methods (POST, GET, etc.)
     allow_headers=["*"],  # Allows all headers
